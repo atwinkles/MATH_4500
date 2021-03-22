@@ -1,0 +1,350 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\pagenumbering{arabic}
+\usepackage{fancyhdr}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{eucal}
+\usepackage{parskip} % removes auto indentation for paragraphs
+\usepackage{enumitem} % changes the indexing for enumerate
+\setlist[enumerate,1]{label = {(\alph*)}}
+
+\usepackage{fancyvrb}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\newcommand{\Mod}[1]{\ (\text{mod}\ #1)}
+\newcommand{\Problem}[1]{\textbf{Problem #1}}
+\newcommand{\li}[0]{\liminf_{n\to\infty}}
+\newcommand{\ls}[0]{\limsup_{n\to\infty}}
+\newcommand{\dl}[2]{\displaystyle\lim_{#1 \to #2}}
+
+\linespread{1.5}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 4500}
+\lhead{Alexander Winkles}
+\chead{\Large \textbf{Problem Set 10}}
+\cfoot{Page \thepage}
+
+\begin{document}
+
+\Problem{4.3.1}
+
+For these problems, I wrote a code in MATLAB called "gaussianelim.m". 
+\begin{enumerate}
+\item For the first part, I found 
+\begin{equation*}
+L = 
+\begin{bmatrix}
+1 & 0 & 0\\
+-2 & 1 & 0\\
+-3 & 1.5 & 0\\
+\end{bmatrix},
+\quad
+U = 
+\begin{bmatrix}
+-1 & 1 & -4\\
+0 & 4 & -8\\
+0 & 0 & 2\\	
+\end{bmatrix},
+\quad
+x = 
+\begin{bmatrix}
+1.25\\
+-0.75\\
+0.5
+\end{bmatrix}
+\end{equation*}
+For the second part, I found
+\begin{equation*}
+L = 
+\begin{bmatrix}
+1 & 0 & 0\\
+-0.5 & 1 & 0\\ 	
+1.5 & 0 & 1\\
+\end{bmatrix}
+\quad
+U = 
+\begin{bmatrix}
+2 & 2 & 0\\
+0 & 2 & -4\\
+0 & 0 & 2\\
+\end{bmatrix}
+\quad
+x = 
+\begin{bmatrix}
+1.25\\
+-0.75\\
+0.5
+\end{bmatrix}
+\end{equation*}
+
+\item For the first part, I found
+\begin{equation*}
+L = 
+\begin{bmatrix}
+1 & 0 & 0\\
+2 & 1 & 0\\
+0 & -\frac{2}{11} & 1	
+\end{bmatrix}
+\quad
+U = 
+\begin{bmatrix}
+1 & 6 & 0\\
+0 & -11 & 0\\
+0 & 0 & 1\\	
+\end{bmatrix}
+\quad
+x =
+\begin{bmatrix}
+\frac{3}{11}\\
+\frac{5}{11}\\
+\frac{1}{11}
+\end{bmatrix}
+\end{equation*}
+For the second part, I found
+\begin{equation*}
+L = 
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+\frac{1}{2} & \frac{11}{4} & 1	
+\end{bmatrix}
+\quad
+U = 
+\begin{bmatrix}
+2 & 1 & 0\\
+0 & 2 & 1\\
+0 & 0 & -\frac{11}{4}
+\end{bmatrix}
+\quad
+x =
+\begin{bmatrix}
+\frac{3}{11}\\
+\frac{5}{11}\\
+\frac{1}{11}
+\end{bmatrix}
+\end{equation*}
+
+\item For the first part, I found
+\begin{equation*}
+L = 
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+-1 & 1 & 0 & 0\\
+0 & 1 & 1 & 0\\
+-3 & 3 & 2 & 1\\	
+\end{bmatrix}
+\quad
+U = 
+\begin{bmatrix}
+-1 & 1 & 0 & -3\\
+0 & 1 & 3 & -2\\
+0 & 0 & -4 & 1\\
+0 & 0 & 0 & -3	
+\end{bmatrix}
+\quad
+x = 
+\begin{bmatrix}
+1\\
+2\\
+0\\
+-1
+\end{bmatrix}
+\end{equation*}
+For the second part, I found
+\begin{equation*}
+L = 
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+\frac{1}{3} & 0 & 1 & 0\\
+-\frac{1}{3} & 1 & \frac{1}{2} & 1\\
+\end{bmatrix}
+\quad
+U = 
+\begin{bmatrix}
+3 & 0 & 1 & 2\\
+0 & 1 & -1 & -1\\
+0 & 0 & \frac{8}{3} & \frac{1}{3}\\
+0 & 0 & 0 & -\frac{3}{2}	
+\end{bmatrix}
+\quad
+x = 
+\begin{bmatrix}
+1\\
+2\\
+0\\
+-1
+\end{bmatrix}
+\end{equation*}
+
+\item For the first part, I found
+\begin{equation*}
+L = 
+\begin{bmatrix}
+	1 & 0 & 0 & 0\\
+	2 & 1 & 0 & 0\\
+	\frac{1}{2} & 3 & 1 & 0\\
+	-1 & -\frac{1}{2} & 2 & 1\\
+\end{bmatrix}
+\quad 
+U = 
+\begin{bmatrix}
+6 & -2 & 2 & 4\\
+0 & -4 & 0 & 2\\
+0 & 0 & 2 & -5\\
+0 & 0 & 0 & -3	
+\end{bmatrix}
+\quad
+x = 
+\begin{bmatrix}
+1\\
+3\\
+-2\\
+1	
+\end{bmatrix}
+\end{equation*}
+For the second part, I found
+\begin{equation*}
+L = 
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+\frac{1}{2} & 1 & 0 & 0\\
+-1 & -\frac{1}{6} & 1 & 0\\
+2 & \frac{1}{3} & -\frac{2}{13} & 1\\	
+\end{bmatrix}
+\quad
+U = 
+\begin{bmatrix}
+6 & -2 & 2 & 4\\
+0 & -12 & 2 & 1\\
+0 & 0 & \frac{13}{3} & -\frac{83}{6}\\
+0 & 0 & 0 & -\frac{6}{13}	
+\end{bmatrix}
+x = 
+\begin{bmatrix}
+1\\
+3\\
+-2\\
+1	
+\end{bmatrix}
+\end{equation*}
+
+\item For the first part I found
+\begin{equation*}
+L = 
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+4  & 1 & 0 & 0\\
+8 & -\frac{16}{9} & 1 & 0\\
+2 & -\frac{1}{3} & \frac{6}{31} & 1	
+\end{bmatrix}
+\quad
+U = 
+\begin{bmatrix}
+1 & 0 & 2 & 1\\
+0 & -9 & -6 & -3\\
+0 & 0 &-\frac{62}{3} & -\frac{25}{3}\\
+0 & 0 & 0 & -\frac{12}{31}	
+\end{bmatrix}
+\quad
+x = 
+\begin{bmatrix}
+1\\
+-1\\
+0\\
+1	
+\end{bmatrix}
+\end{equation*}
+For the second part I found
+\begin{equation*}
+L = 
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+2 & 1 & 0 & 0\\
+\frac{1}{2} & \frac{1}{10} & 1 & 0\\
+4 & -\frac{4}{15} & -\frac{19}{9} & 1 	
+\end{bmatrix}
+\quad
+U = 
+\begin{bmatrix}
+2 & 3 & 2 & 1\\
+0 & -15 & -2 & -1\\
+0 & 0 & \frac{6}{5} & \frac{3}{5}\\
+0 & 0 & 0 & 2	
+\end{bmatrix}
+x = 
+\begin{bmatrix}
+1\\
+-1\\
+0\\
+1	
+\end{bmatrix}
+\end{equation*}
+
+
+\end{enumerate}
+
+\Problem{4.3.11}
+
+Let $A$ be tridiagonal and let $c_0 = 0$ and $a_n = 0$. Suppose $|d_i| > |a_i| + |c_{i-1}|$. By definition $d_i \neq 0$. Let $|d_i'| = \left|d_i - \frac{a_{i-1}}{d_{i-1}}c_{i-1}\right|$. Thus, we wish to show that $|d_i'| > 0$. We find that $|d_i'| = \left|d_i - \frac{a_{i-1}}{d_{i-1}}c_{i-1}\right| \geq |d_i| -  \left|\frac{a_{i-1}}{d_{i-1}}\right||c_{i-1}| > |a_i| + |c_{i-1}| - \left|\frac{a_{i-1}}{d_{i-1}}\right||c_{i-1}|$ since our matrix is columnwise dominant. Thus we have $|d_i'| > |a_i| + |c_{i-1}|\left(1 - \left|\frac{a_{i-1}}{d_{i-1}}\right|\right)$. Now, we will show that $\left| \frac{a_{i-1}}{d_{i-1}}\right| < 1$. Since $|d_i| > |a_i| + |c_{i-1}| > |a_i|$, we know that $|d_{i-1}| > |a_{i-1}|$, so $\left| \frac{a_{i-1}}{d_{i-1}}\right| < 1$. Thus, we find that $|d_i'| > |a_i| + |c_{i-1}|\left(1 - \left|\frac{a_{i-1}}{d_{i-1}}\right|\right) > |a_i| > 0$, so $a_i \neq 0$. Hence $|d_i'| > |a_{i-1}| > 0 \Rightarrow |d_{i}'| \neq 0$ and we are done. 
+
+\Problem{4.3.21}
+
+Work for this problem was done using my MATLAB code "gaussianelim.m".
+\begin{enumerate}
+\item $x = \begin{bmatrix} 0.81475769\\ -2.3569839\\ -0.64607822 \end{bmatrix}$	
+\item $x = \begin{bmatrix} 0.81475769\\ -2.3569839\\ -0.64607822 \end{bmatrix}$	
+\end{enumerate}
+
+
+\Problem{4.3.29}
+
+Using my MATLAB code "gaussianelim.m", I found the determinant to be -6. 
+
+\Problem{4.4.1}
+
+Let $x,y \in V$, where $V$ is a vector space. 
+\begin{enumerate}
+\item Suppose $x \neq 0$. Then, $||x||_{\infty} = \displaystyle\max_{1\leq i \leq n} |x_i|$. Since $x$ is nonzero, at least one of its elements must be nonzero. Letting this nonzero element be at position $i$, we find that $|x_i| > 0$. If this is the only nonzero element, then we are done as it is the max. Otherwise, there may exist another nonzero element greater than $|x_i|$, which then will be the max. Regardless, we find that $||x||_{\infty} > 0$. Now let $\lambda \in \R$. Then, $\lambda x$ will have elements of the form $\lambda x_i$. Thus, $||\lambda x||_{\infty} = \displaystyle\max_{1 \leq i \leq n} |\lambda x_i| = |\lambda|\displaystyle\max_{1 \leq i \leq n} |x_i| = |\lambda|||x||_{\infty}$, as desired. Finally, $||x + y||_{\infty} = \displaystyle\max_{1 \leq i \leq n} |x_i + y_i|$. By the normal triangle inequality, we find $\displaystyle\max_{1 \leq i \leq n} |x_i + y_i| \leq \displaystyle\max_{1 \leq i \leq n} (|x_i| + |y_i|) = \displaystyle\max_{1 \leq i \leq n}|x_i| + \displaystyle\max_{1 \leq i \leq n}|y_i| = ||x||_{\infty} + ||y||_{\infty}$, as desired. 
+\item Suppose $x \neq 0$. Then $||x||_2 = \left(\displaystyle\sum_{i=1}^n x_i^2 \right)^{1/2}$. Since $x$ is nonzero, at least one of its elements must be nonzero, which we shall call $x_i$. Then $x_i^2 > 0$. Since $||x||_2$ is a summation of $n$ terms like this, that may or may not also be nonzero, we can see that $||x||_2 = \left(\displaystyle\sum_{i=1}^n x_i^2 \right)^{1/2} > 0$ as desired. Now let $\lambda \in \R$. Then, $\lambda x$ will have elements of the form $\lambda x_i$. Thus, $||\lambda x||_2 = \left(\displaystyle\sum_{i=1}^n (\lambda x_i)^2 \right)^{1/2} = \left(\lambda^2\displaystyle\sum_{i=1}^n x_i^2 \right)^{1/2} = |\lambda|\left(\displaystyle\sum_{i=1}^n x_i^2 \right)^{1/2}$, as desired. Finally, $||x + y||_2 = \left(\displaystyle\sum_{i=1}^n (x_i+ y_i)^2 \right)^{1/2} = \left(\displaystyle\sum_{i=1}^n x_i^2 + 2x_iy_i + y_i^2 \right)^{1/2} \leq \left(\displaystyle\sum_{i=1}^n x_i^2 \right)^{1/2} + \left(\displaystyle\sum_{i=1}^n y_i^2 \right)^{1/2}$, as desired. 
+\item Suppose $x \neq 0$. Then $||x||_1 = \displaystyle\sum_{i=1}^n |x_i|$. Since $x$ is nonzero, at least one of its elements must be nonzero. Letting this nonzero element be at position $i$, we find that $|x_i| > 0$. This will be true for any other nonzero element of $x$, so we find that $||x||_1 = \displaystyle\sum_{i=1}^n |x_i| > 0$. Now let $\lambda \in \R$. Then, $\lambda x$ will have elements of the form $\lambda x_i$. Thus, we find that $||\lambda x||_1 = \displaystyle\sum_{i=1}^n |\lambda x_i| = \displaystyle\sum_{i=1}^n |\lambda||x_i| = |\lambda|\displaystyle\sum_{i=1}^n |x_i| = \lambda||x||_1$ as desired. Finally, $||x + y||_1 = \displaystyle\sum_{i=1}^n |x_i + y_i| \leq \displaystyle\sum_{i=1}^n |x_i| + \displaystyle\sum_{i=1}^n |y_i| = ||x||_1 + ||y||_1$, as desired. 
+\end{enumerate}
+
+\Problem{4.4.2}
+
+Let $x \in \R^n$. Then, $||x||_2^2 = \displaystyle\sum_{i=1}^n x_i^2 \leq \left(\displaystyle\sum_{i=1}^n x_i^2 +2*\displaystyle\sum_{i,j,i\neq j} |x_i||x_j| \right)= ||x||_1^2$. Likewise, since $||x||_{\infty}$ only takes the largest element, and does not sum all the elements, we find that $||x||_{\infty} = \displaystyle\max_{1 \leq i \leq n} |x_i| = |x_j| = \left(x_j^2\right)^{1/2} \leq \left(\displaystyle\sum_{i=1}^n x_i^2 \right)^{1/2}$. Thus we find that $||x||_{\infty} \leq ||x||_2 \leq ||x||_1$. Notice that the equalities will hold for any vector with a single nonzero element.
+
+\Problem{4.4.3}
+
+Notice that $||x||_1 = \displaystyle\sum_{i=1}^n |x_i| \leq \displaystyle\sum_{i=1}^n \displaystyle\max_{1 \leq i \leq n}|x_i| = n*\displaystyle\max_{1 \leq i \leq n} = n||x||_{\infty}$. Likewise, $||x||_2^2 = \displaystyle\sum_{i=1}^n x_i^2 = \displaystyle\sum_{i=1}^n \displaystyle\max_{1 \leq i \leq n}|x_i|^2 = n*\displaystyle\max_{1 \leq i \leq n}|x_i|^2 = n||x||_{\infty}^2$, so $||x||_2 \leq \sqrt{n}||x||_{\infty}$. 
+
+\Problem{4.4.4}
+
+Let $x \in \R$. Then, we know $f(x) \leq \sup{f(x)}$ and $g(x) \leq \sup{g(x)}$. Thus, $f(x) + g(x) \leq \sup{f(x)} + \sup{g(x)}$. Thus $\sup{f(x)} + \sup{g(x)}$ is some upper bound for $f(x) + g(x)$, though it is not necessarily the least upper bound. So $\sup{[f(x) + g(x)]} \leq \sup{f(x)} + \sup{g(x)}$ as desired. 
+
+\Problem{4.4.7}
+	
+\begin{enumerate}
+\item No. For example take $x = \begin{bmatrix} 1 & 0 & 0 \end{bmatrix}^T$. Then, $\max\{|x_2|,|x_3|\} = 0$, but the vector is nonzero. 
+\item No, as for some $\lambda \in \R$ it follows that $||\lambda x|| = \displaystyle\sum_{i=1}^n|\lambda x_i|^3 = |\lambda|^3\displaystyle\sum_{i=1}^n|x_i|^3 \neq |\lambda|||x||$.
+\item No, take for example $x = \begin{bmatrix} 1 & 0 & 0 \end{bmatrix}^T$ and $y = \begin{bmatrix} 0 & 1 & 0 \end{bmatrix}^T$. Then $||x + y|| = 4$ but $||x|| + ||y|| = 2$ so $||x + y|| \not\leq ||x|| + ||y||$. 
+\item Yes, this satisfies all the postulates. 
+\item Yes, this satisfies all the postulates. 
+\end{enumerate}
+ 
+\VerbatimInput{homework_code.log}
+
+\end{document}

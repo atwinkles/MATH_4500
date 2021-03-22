@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\pagenumbering{arabic}
+\usepackage{fancyhdr}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{eucal}
+\usepackage{parskip} % removes auto indentation for paragraphs
+\usepackage{enumitem} % changes the indexing for enumerate
+\setlist[enumerate,1]{label = {(\alph*)}}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\newcommand{\Mod}[1]{\ (\text{mod}\ #1)}
+\newcommand{\Problem}[1]{\textbf{Problem #1}}
+\newcommand{\li}[0]{\liminf_{n\to\infty}}
+\newcommand{\ls}[0]{\limsup_{n\to\infty}}
+\newcommand{\dl}[2]{\displaystyle\lim_{#1 \to #2}}
+
+\linespread{1.5}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 4500}
+\lhead{Alexander Winkles}
+\chead{\Large \textbf{Problem Set 9}}
+\cfoot{Page \thepage}
+
+\begin{document}
+
+\Problem{7.3.21}
+
+Consider the numerical integration rule $\displaystyle\int_{-1}^1 f(x)\ dx \approx Af\left(-\sqrt{\frac{3}{5}}\right) + Bf(0) + Cf\left(\sqrt{\frac{3}{5}}\right)$.
+\begin{enumerate}
+\item The following is the linear system that must be solved to determine $A,B,$ and $C$: 
+\begin{align*}
+\displaystyle\int_{-1}^1 dx = 2 &= A + B + C\\
+\displaystyle\int_{-1}^1 x\ dx = 0 &= -\sqrt{\frac{3}{5}}A + \sqrt{\frac{3}{5}}C\\
+\displaystyle\int_{-1}^1 x^2\ dx = \frac{2}{3} &= \frac{3}{5}A + \frac{3}{5}C
+\end{align*}
+Solving this system in MATLAB with "linsolve" gives 
+\begin{align*}
+A &= 0.5555556 = \frac{5}{9}\\
+B &= 0.8888889 = \frac{8}{9}\\
+C &= 0.5555556 = \frac{5}{9}	
+\end{align*}
+\item The following are the integrals that must be evaluated to find $A,B,$ and $C$ using Newton-Cotes:
+\begin{align*}
+\displaystyle\int_{-1}^1 \frac{(x-0)(x-	\sqrt{\frac{3}{5}})}{(-\sqrt{\frac{3}{5}} -0)(-\sqrt{\frac{3}{5}} - \sqrt{\frac{3}{5}})}\ dx &= 0.5555556 = \frac{5}{9}\\
+\displaystyle\int_{-1}^1 \frac{(x+\sqrt{\frac{3}{5}})(x-\sqrt{\frac{3}{5}})}{(-\sqrt{\frac{3}{5}})(\sqrt{\frac{3}{5}})}\ dx &= 0.8888889 = \frac{8}{9}\\
+\displaystyle\int_{-1}^1 \frac{(x+\sqrt{\frac{3}{5}})(x-0)}{\sqrt{\frac{3}{5}}+\sqrt{\frac{3}{5}})(\sqrt{\frac{3}{5}}-0)}\ dx &= 0.5555556 = \frac{5}{9}
+\end{align*}
+
+\end{enumerate}
+
+\Problem{7.3.22}
+
+Let $\displaystyle\int_{-1}^1 f(x)\ dx \approx \frac{5}{9}f\left(-\sqrt{\frac{3}{5}}\right) + \frac{8}{9}f(0)+\frac{5}{9}f\left(\sqrt{\frac{3}{5}}\right)$. 
+\begin{enumerate}
+\item We wish to solve $\displaystyle\int_0^{\pi/2}x\ dx$ using the above formula. Using the change of intervals formula, our given Gaussian quadrature becomes $	\frac{\pi}{4} \left(\frac{5}{9}(\frac{\pi}{4}\cdot (-\sqrt{\frac{3}{5}})  +\frac{\pi}{4}) + \frac{8}{9}(\frac{\pi}{4}) + \frac{5}{9}(\frac{\pi}{4}\cdot\sqrt{\frac{3}{5}}  +\frac{\pi}{4})\right) = 1.23370$.
+\item We wish to solve $\displaystyle\int_0^4 \frac{\sin{t}}{t}\ dt$ using the above formula. Using the change of interval formula, our given Gaussian quadrature becomes $2\left(\frac{5}{9}\frac{\sin{(2\cdot (-\sqrt{\frac{3}{5}}) + 2)}}{2\cdot (-\sqrt{\frac{3}{5}})} + \frac{8}{9}\frac{\sin{2}}{2} + \frac{5}{9}\frac{\sin{(2\cdot (\sqrt{\frac{3}{5}}) + 2)}}{2\cdot (\sqrt{\frac{3}{5}})} \right) = 1.75802$.
+\end{enumerate}
+
+\Problem{7.4.4}
+
+Recall Simpson's rule, which states $\displaystyle\int_a^b f(x)\ dx \approx \frac{b-a}{6}\left[f(a) + 4f\left(\frac{a+b}{2}\right) + f(b)\right]$. The second column of the Romberg array takes the form of $R(n,1) = R(n,0) + \frac{1}{4^m-1}[R(n,0) - R(0,0)] = $
+
+\Problem{7.4.5}
+
+We wish to show by induction that $I - R(n,m-1) = a_1h^{2m} + a_2h^{2m+2} + a_3h^{2m+4} + ...$. Let our base case be when $m = 1$, then we have $I - R(n,0) = a_1h^2 + a_2h^4 + ...$, so the base case holds. Now for our inductive step, suppose for $m \in \N$ that $I - R(n,m-1) = a_1h^{2m} + a_2h^{2m+2} + a_3h^{2m+4} + ... \forall n \in \N$. Recall that $h_n = 2h_{n-1}$.
+\begin{align*}
+	\Rightarrow I - \frac{4^mR(n,m-1)-R(n-1,m-1)}{4^m-1} &= \frac{4^m(I - R(n,m-1))}{4^m-1} - \frac{I - R(n-1,m-1)}{4^m-1}\\
+	&= \frac{4^m(a_1h_{n+1}^{2m} + a_2h_{n+1}^{2m+2} + ...)}{4^m-1} - \frac{a_1h_{n}^{2m} + a_2h_{n}^{2m} + ...}{4^m-1}\\
+	&= \frac{4^m(a_1(\frac{h_{n}}{2})^{2m} + a_2(\frac{h_{n}}{2})^{2m+2} + ...) - (a_1h_{n}^{2m} + a_2h_{n}^{2m+2}+ ...)}{4^m-1}\\
+	&=b_1h_{n+1}^{2m+2} + b_2h_{n+1}^{2m+4} + ...
+\end{align*}
+as desired.
+
+\Problem{7.4.6}
+
+We wish to apply the Romberg algorithm to find $R(2,2)$ for the following integrals. For this, I wrote a MATLAB code called "romberg.m". 
+\begin{enumerate}
+\item $\displaystyle\int_1^3 \frac{dx}{x}$. We now construct the Romberg array:
+
+\begin{center}
+\begin{tabular}{cccc}
+	$n \backslash m$ & 0 & 1 & 2\\
+	0 & 1.333 & 0 & 0\\
+	1 & 1.667 & 1.1111 & 0\\
+	2 & 1.1167 & 1.1000 & 1.0993
+\end{tabular}
+\end{center}
+Thus, $R(2,2) = 1.0993$.
+
+\item $\displaystyle\int_0^{\pi/2} (\frac{x}{\pi})^2\ dx$ in terms of $\pi$. As before, we construct the Romberg array using MATLAB:
+
+\begin{center}
+\begin{tabular}{cccc}
+	$n \backslash m$ & 0 & 1 & 2\\
+	0 & 0.1936 & 0 & 0\\
+	1 & 0.1473 & 0.1309 & 0\\
+	2 & 0.1350 & 0.1309 & 0.1309
+\end{tabular}
+\end{center}
+
+In terms of $\pi$, this is approximately 
+
+\begin{center}
+\begin{tabular}{cccc}
+	$n \backslash m$ & 0 & 1 & 2\\
+	0 & $\frac{\pi}{16}$ & 0 & 0\\
+	1 & $\frac{3\pi}{64}$ & $\frac{\pi}{24}$ & 0\\
+	2 & $\frac{11\pi}{256}$ & $\frac{\pi}{24}$ & $\frac{\pi}{24}$
+\end{tabular}
+\end{center}
+
+Thus, $R(2,2) = \frac{\pi}{24}$. 
+
+\end{enumerate}
+
+
+\end{document}

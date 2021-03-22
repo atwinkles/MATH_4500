@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+%\usepackage{bbold}
+%\usepackage{url}
+%\usepackage{booktabs}
+%\usepackage{marvosym}
+%\usepackage{wasysym}
+\pagenumbering{arabic}
+\usepackage{fancyhdr}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{eucal}
+\usepackage{parskip} % removes auto indentation for paragraphs
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\newcommand{\Mod}[1]{\ (\text{mod}\ #1)}
+\newcommand{\Problem}[1]{\textbf{Problem #1}}
+
+\linespread{1.5}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 4500}
+\lhead{Alexander Winkles}
+\chead{\Large \textbf{Problem Set 7}}
+\cfoot{Page \thepage}
+
+\begin{document}
+
+\Problem{7.1.1}
+
+Let us begin with $f(x) = \displaystyle\sum_{i=0}^n f(x_i)l_i(x) + \frac{1}{(n+1)!}f^{(n+1)}(\xi_x)w(x)$ where $w(x) = \prod_{i=0}^n (x-x_i)$. Thus, we find that $f'(x) = \displaystyle\sum_{i=0}^n f(x_i)l_i'(x) + \frac{1}{(n+1)!}f^{(n+1)}(\xi_x)w'(x) + \frac{1}{(n+1)!}w(x)\frac{d}{dx}f^{(n+1)}(\xi_x)$. Suppose we let $x_a$ be a node for $f$, then we know $w(x_a) = 0$ since it is a product with the term $(x_a-x_a)$ multiplied somewhere inside it. Our result becomes $f'(x_a) = \displaystyle\sum_{i=0}^n f(x_i)l_i'(x_a) + \frac{1}{(n+1)!}f^{(n+1)}(\xi_x)w'(x_a)$. Now we seek to find $w'(x_a)$. Since $w(x) = \displaystyle\prod_{i=0}^n (x-x_i)$, we find that $w'(x) = \displaystyle\sum_{i=0}^n\displaystyle\prod_{\substack{j = 0 \\ j \neq i}}^n(x-x_j)$, which is know as the derivative for a product. By plugging in $x_a$, we find $w'(x_a) = \displaystyle\prod_{\substack{j = 0 \\ j \neq a}}^n (x_a - x_j)$, where the summation disappears as every other term becomes zero. Plugging this result back into the original derivative, we find $f'(x_a) = \displaystyle\sum_{i=0}^n f(x_i)l_i'(x_a) + \frac{1}{(n+1)!}f^{(n+1)}(\xi_x)\displaystyle\prod_{\substack{j = 0 \\ j \neq a}}^n (x_a - x_j)$ as desired. 
+
+\Problem{7.1.6}
+
+Taking some Taylor expansions, we find 
+\begin{align*}
+f(x+2h) &= f(x) + f'(x)(2h) + \frac{f''(x)}{2}(2h)^2 + \frac{f'''(x)}{6}(2h)^3 + \frac{f^{(4)}(x)}{4!}(2h)^4 + \frac{f^{(5)}(\xi_1)}{5!}(2h)^5\\
+f(x-2h) &= f(x) + f'(x)(-2h) + \frac{f''(x)}{2}(-2h)^2 + \frac{f'''(x)}{6}(-2h)^3 + \frac{f^{(4)}(x)}{4!}(-2h)^4 + \frac{f^{(5)}(\xi_2)}{5!}(-2h)^5\\
+f(x+h) &= f(x) + f'(x)(h) + \frac{f''(x)}{2}(h)^2 + \frac{f'''(x)}{6}(h)^3 + \frac{f^{(4)}(x)}{4!}(h)^4 + \frac{f^{(5)}(\xi_3)}{5!}(h)^5\\
+f(x-h) &= f(x) + f'(x)(-h) + \frac{f''(x)}{2}(-h)^2 + \frac{f'''(x)}{6}(-h)^3 + \frac{f^{(4)}(x)}{4!}(-h)^4 + \frac{f^{(5)}(\xi_4)}{5!}(-h)^5
+\end{align*}
+Thus, we find that $-f(x+2h) + 8f(x+h) - 8f(x-h) + f(x-2h) \approx 12hf'(x)$, so $f'(x) \approx \frac{1}{12h}[-f(x+2h) + 8f(x+h) - 8f(x-h) + f(x-2h)]$. Likewise we find that $-f(x+2h) + 16f(x+h) - 30f(x) + 16f(x-h) - f(x-2h) \approx 12h^2f''(x)$, so $f''(x) \approx \frac{1}{12h^2}[-f(x+2h) + 16f(x+h) - 30f(x) + 16f(x-h) - f(x-2h)]$ as desired. As seen from the Taylor expansions, each of these has an error term of $O(h^5)$. Since we are dividing by an $12h$, our error term becomes $O(h^4)$ as desired. 
+
+
+
+\Problem{7.1.7}
+
+
+
+\end{document}

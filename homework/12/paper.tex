@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\pagenumbering{arabic}
+\usepackage{fancyhdr}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{eucal}
+\usepackage{parskip} % removes auto indentation for paragraphs
+\usepackage{enumitem} % changes the indexing for enumerate
+\setlist[enumerate,1]{label = {(\alph*)}}
+
+\usepackage{fancyvrb}
+\usepackage{verbatim}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\newcommand{\Mod}[1]{\ (\text{mod}\ #1)}
+\newcommand{\Problem}[1]{\textbf{Problem #1}}
+\newcommand{\li}[0]{\liminf_{n\to\infty}}
+\newcommand{\ls}[0]{\limsup_{n\to\infty}}
+\newcommand{\dl}[2]{\displaystyle\lim_{#1 \to #2}}
+
+\linespread{1.5}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 4500}
+\lhead{Alexander Winkles}
+\chead{\Large \textbf{Problem Set 12}}
+\cfoot{Page \thepage}
+
+\begin{document}
+	
+\Problem{4.5.7}
+
+Let $1 = ||A|| > ||B||$. Suppose $A - B$ was not invertible. Then, it will be singular, so $\exists x$ such that $||x|| = 1$ and $(A-B)x = 0$, which may be rewritten as $Ax = Bx$. From this, we find $1 = ||x|| = ||Ax|| \leq ||A||\ ||x|| = ||B||\ ||x|| = ||B|| < 1$. Thus, we have found a contradiction, so $A - B$ is invertible. 
+
+\Problem{4.5.8}
+
+Suppose $||A|| < 1$. By Theorem 1, if we rewrite $I + A$ as $I - (-A)$, then $(I - (-A))^{-1} = \displaystyle\sum_{k = 0}^{\infty} (-A)^k = I - A + A^2 - ...$ as desired. 
+%We will show that $I + A$ is invertible by contradiction. If it is not invertible, then it is singular and $\exists x$ such that $||x|| = 1$ such that $(I + A)x = 0$, or $Ix = -Ax$. Thus, it follows that $1 = ||x|| = ||-Ax|| \leq ||-A||\ ||x|| = ||A||$, but $||A|| < 1$ so we have arrived at our contradiction, so $I + A$ is invertible. Now, 
+
+\Problem{4.5.9}
+
+Suppose 
+\begin{equation*}
+A = 
+\begin{bmatrix}
+1 & 1\\
+0 & 0\\	
+\end{bmatrix},\quad
+B = 
+\begin{bmatrix}
+0 & 1\\
+0 & 1\\	
+\end{bmatrix}
+\end{equation*}
+Then, $||BA - I|| = ||I|| = 1$, but $||AB - I|| < 1$, so we have found an example where the statement is false. 
+
+\Problem{4.6.1}
+
+Suppose $A$ is diagonally dominant and let $Q = D$ as in the Jacobi method. Since 
+\begin{equation*}
+Q = 
+\begin{bmatrix}
+a_{11} & 0 & 0 &\cdots & 0\\
+0 & a_{22} & 0 &\cdots & 0\\
+0 & 0 & a_{33} & \cdots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+0 & 0 & 0 & \cdots & a_{nn}
+\end{bmatrix}
+\end{equation*}
+it follows that 
+\begin{equation*}
+Q^{-1} = 
+\begin{bmatrix}
+1/a_{11} & 0 & 0 &\cdots & 0\\
+0 & 1/a_{22} & 0 &\cdots & 0\\
+0 & 0 & 1/a_{33} & \cdots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+0 & 0 & 0 & \cdots & 1/a_{nn}
+\end{bmatrix}.
+\end{equation*}
+Thus, $Q^{-1}A$ will have diagonal elements of 1, and will retain its diagonal dominance. Then, $I - Q^{-1}A$ will have diagonal elements of 0. Since $Q^{-1}A$ was diagonally dominant with diagonals of 0, we know for each row ($1 \leq i \leq n$) that $\displaystyle\sum_{\substack{j = 1\\j\neq i}}^n|a_{ij}| < 1$. Thus, $||I - Q^{-1}A||_{\infty} = \displaystyle\max_{1 \leq i \leq n} \displaystyle\sum_{\substack{j = 1\\j\neq i}}^n|a_{ij}| < 1$. Since this is defined to be the maximal norm, all other norms are less than it. Thus, $\displaystyle\inf_{|| \cdot||} ||I - Q^{-1}A|| < 1$ and by Theorem 4 of the section $\rho(A) < 1$. 
+
+\Problem{4.6.2}
+
+Suppose $A$ is unit row diagonally dominant, or 
+\begin{equation*}
+a_{ii} = 1 > \displaystyle\sum_{\substack{j = 1\\ j\neq i}}^n |a_{ij}|. 
+\end{equation*}
+Then, 
+\begin{equation*}
+I - A = 
+\begin{bmatrix}
+0 & a_{12} & a_{13} &\hdots & a_{1n}\\
+a_{21} & 0 & a_{23} &\hdots & a_{2n}\\
+a_{31} & a_{32} & 0 & \hdots & a_{3n}\\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+a_{n1} & a_{n2} & a_{n3} & \hdots & 0
+\end{bmatrix}
+\end{equation*}
+By Theorem 4.4.1, for any norm $||\cdot||$ on $R^n$, it follows that $||A|| = \sup_{||u|| = 1}{\{ ||Au|| : u \in \R^n\} }$. Without loss of generality, let us choose $u = \begin{bmatrix} \frac{1}{\sqrt{n}} & \frac{1}{\sqrt{n}} & \hdots & \frac{1}{\sqrt{n}} \end{bmatrix}^T$. Then, $(I-A)u = \begin{bmatrix} \displaystyle\sum_{\substack{j = 1\\ j \neq i}}^n|a_{1j}| & \displaystyle\sum_{\substack{j = 1\\ j \neq i}}^n|a_{2j}| & \hdots & \displaystyle\sum_{\substack{j = 1\\ j \neq i}}^n|a_{nj}| \end{bmatrix}^T$. Notice that each of these elements is less than 1, so $||I - A||_{\infty} = \displaystyle\max_{1 \leq i \leq n} \displaystyle\sum_{j = 1}^n|a_{ij}| < 1$, so by Theorem 4.6.1, the Richardson iteration is successful.
+
+\Problem{4.6.7}
+
+Let $Q = D - C_L$. Suppose $A$ is diagonally dominant. Suppose $\lambda$ is an eigenvalue of $I - Q^{-1}A$ and $x$ is its associated eigenvector. Without loss of generality, assume $||x||_{\infty} = 1$. So we have $[I - Q^{-1}A]x = \lambda x$. Since $Q$ is the lower triangle of $A$, $-\displaystyle\sum_{j = i + 1}^n a_{ij}x_j = \lambda\displaystyle\sum_{j = 1}^i a_{ij}x_j$ for $1 \leq i \leq n$. This can be transposed to $\lambda a_{ii}x_i = -\lambda\displaystyle\sum_{j = 1}^{i-1}a_{ij}x_j - \displaystyle\sum_{j = i+1}^n a_{ij}x_j$. Select $i$ such that $|x_i| = 1 \geq |x_j| \forall j$. Then we find $|\lambda||a_{ii}| \leq |\lambda|\displaystyle\sum_{j=1}^{i-1}|a_{ij}| + \displaystyle\sum_{j = i+1}^n |a_{ij}|$. From this, we find $|\lambda| \leq \{\displaystyle\sum_{j = i+1}^n|a_{ij}|\}\{|a_{ii}| - \displaystyle\sum_{j=1}^{i-1}|a_{ij}|\}^{-1} < 1$. Since $A$ is diagonally dominant, it follows that $||I - Q^{-1}A||_{\infty} < 1$. 
+
+%Thus $||I - Q^{-1}A||_{\infty} = ||(D - C_L)^{-1}C_U||_{\infty} = ||(D-C_L)^{-1}||_{\infty}\cdot||C_U||_{\infty}$. Since $A$ is diagonally dominant, $||C_U||_{\infty} < 1$ by definition. No, we need only show $||(D-C_L)^{-1}||_{\infty} \leq 1$ to be done. 
+
+\Problem{4.6.9}
+
+Suppose the \textit{i}th equation of $Ax = b$ is divided by $a_{ii}$. We then have a new system $A'x = b'$, where the diagonal elements of the new matrix $A'$ are all 1, and $D' = I$. Recall that the inverse of a diagonal matrix $D$ is 
+\begin{equation*}
+D^{-1} = 
+\begin{bmatrix}
+1/a_{11} & 0 & 0 &\cdots & 0\\
+0 & 1/a_{22} & 0 &\cdots & 0\\
+0 & 0 & 1/a_{33} & \cdots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+0 & 0 & 0 & \cdots & 1/a_{nn}
+\end{bmatrix}.	
+\end{equation*}
+We know the Jacobi method is $Dx^{(k)} = (C_L + C_U)x^{(k-1)} + b$, or $x^{(k)} = D^{-1}(C_L + C_U)x^{(k-1)} + D^{-1}b$. Notice then that $D^{-1}b = b'$. Likewise, $D^{-1}(C_L + C_U) = (C_L' + C_U') = (I - A')$, as $A' = D'-C_L'-C_U'$. Thus, we may rewrite the Jacobi method as $x^{(k)} = (I - A')x^{(k-1)} + b'$, which is the Richardson method applied to the new system $A'x = b'$. 
+
+\Problem{4.6.28}
+
+Let 
+\begin{align*}
+\mathcal{J} &= I - D^{-1}A\\
+\mathcal{G} &= I - (D-C_L)^{-1}A\\
+\end{align*}
+
+Let $x^{(k)} = Gx^{(k-1)} + c$ be an arbitrary linear iterative process where $G$ is the iterative matrix. We wish to show that the above matrices are the iterative matrices for the Jacobi and Gauss-Seidel methods, respectively. 
+
+Plugging in $\mathcal{J}$, we find $x^{(k)} = (I - D^{-1}A)x^{(k-1)} + c = (I - D^{-1}[D - C_L - C_U])x^{(k-1)} + c = D^{-1}(C_L + C_U)x^{(k-1)} + c \Rightarrow Dx^{(k)} = (C_L + C_U)x^{(k-1)} + b$, where $b = Dc$. Thus, this is the iterative matrix for the Jacobi method. Plugging in $\mathcal{G}$, we find $x^{(k)} = [I - (D-C_L)^{-1}A]x^{(k-1)} + c = [I - (D-C_L)^{-1}(D - C_L - C_U)]x^{(k-1)} + c = [I - I + (D - C_L)^{-1}C_U]x^{(k-1)} + c \Rightarrow (D - C_L)x^{(k)} = C_Ux^{(k-1)} + b$, where $b = (D - C_L)c$. Thus, this is the iterative matrix for the Gauss-Seidel method. 
+
+The splitting matrices an iterative matrices given in the text are correct, and can be derived from chapter equations 13 and 15. 
+
+
+\Problem{4.6.29}
+
+Using MATLAB, I found 
+\begin{equation*}
+I - Q^{-1}A = 
+\begin{bmatrix}
+ 0 & 1/2 & & & & \\
+ 0 & 1/4 & 1/2 & & &\\
+ 0 & 1/8 & 1/4 & 1/2 & & \\
+ 0 & \vdots & \vdots & \vdots & \ddots &\\
+ 0 & 1/2^n & 1/2^{n-1} & 1/2^{n-2} & \hdots & 1/4	
+\end{bmatrix}.
+\end{equation*}
+
+\Problem{4.7.2}
+
+By Lemma 1 of the section, we know $q(x) = <x, Ax> - 2<x,b>$. Taking the derivative, we find that $\frac{dq(x)}{dx}  = 2Ax - 2b$. Thus, the critical point is $x = A^{-1}b$. To check that this is a minimum, $\frac{d}{dx}\left(\frac{dq(x)}{dx}\right) = 2A$. Since $A$ is positive definite, $2A \Rightarrow $ it is a minimum, and $q(x)_{min} = \langle A^{-1}b,b \rangle - 2\langle A^{-1}b,b\rangle = -\langle b,A^{-1}b\rangle$. 
+
+
+\Problem{4.7.4}
+
+Suppose $A$ is positive definite and let $b$ be a fixed vector. Let $r = b-Ax$ be the residual vector and let $e = A^{-1}b - x$ be the error vector. Then, $\langle r,e \rangle = \langle b - Ax, A^{-1}b - x \rangle = \langle b, A^{-1}b - x \rangle - \langle Ax, A^{-1}b - x \rangle = \langle b, A^{-1}b \rangle - \langle b, x \rangle - \langle Ax, A^{-1}b \rangle + \langle Ax, x \rangle$. Notice that if $Ax = b$, this becomes $0$. Otherwise, as $A$ is positive definite, its inverse is likewise positive definite. Thus, $\langle b, A^{-1}b \rangle > 0$ and $\langle Ax, x \rangle > 0$, and thus $\langle r, e \rangle > 0$. 
+
+\Problem{4.7.7}
+
+By equation 4 of the section, we know $q(x + tv) = q(x) - \frac{\langle v, b-Ax^2 \rangle}{\langle v, Av \rangle}$, or $q(x^{(k+1)}) = q(x^{(k)}) - \frac{\langle v, b-A(x^{(k)})^2 \rangle}{\langle v, Av \rangle}$. In steepest descent, we are choosing $v = b - Ax^{(k)} = r$, we can write the following: $q(x^{(k+1)}) = q(x^{(k)}) - \frac{\langle r^{(k)}, b-A(x^{(k)})^2 \rangle}{\langle r^{(k)}, Ar^{(k)} \rangle}$. Then, $\langle r^{(k)}, b-A(x^{(k)})^2 \rangle = \displaystyle\sum_{i=1}^n r_i^{(k)}(b_i - Ax_i^{(k)} \Rightarrow \displaystyle\sum_{i=1}^n \langle r_i^{(k)}, r_i^{(k)} \rangle = ||r^{(k)}||^2 \Rightarrow q(x^{(k+1)}) = q(x^{(k)}) - \frac{||r^{(k)}||^2}{\langle r^{(k)}, Ar^{(k)} \rangle}$.  
+
+\end{document}

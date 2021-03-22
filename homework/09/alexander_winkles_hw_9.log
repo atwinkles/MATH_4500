@@ -1,0 +1,66 @@
+Here is the function I wrote to do Romberge integration:
+
+type romberg.m
+
+function y = romberg(f,a,b,n,r,q)
+%y = romberg(f,a,b,n,r,q)
+%
+%This is an algorithm written by Alexander Winkles that performs Romberg
+%integration.
+%
+%f : the function being integrated
+%a : the lower bound of the integral
+%b : the upper bound of the integral
+%n : the 2^n subinterval specification
+%r : two element vector to specify which R(r(1),r(2)) desired as an output
+%q : if q == 1, returns an array of all Romberg values computed
+
+h = b-a;
+
+R = zeros(n+1,n+1);
+
+R(1,1) = (1/2)*h*(feval(f,a) + feval(f,b));
+
+for i = 2 : n+1
+    h = h/2;
+    sum = 0;
+    for u = 1 : (2^(i-2))
+        sum = sum + feval(f,(a + (2*u-1)*h));
+    end;
+    R(i,1) = (1/2)*R(i-1,1) + h*(sum);
+    for j = 2 : i
+        R(i,j) = R(i,j-1) + (R(i,j-1) - R(i-1,j-1))/(4^(j-1) - 1);
+    end;
+end;
+
+if q == 1
+    disp(R)
+end;
+
+y = R(r(1),r(2));
+
+---------------------------------------------------------------------------
+
+f =@(x) 1./x;
+romberg(f,1,3,2,[2,2],1)
+    1.3333         0         0
+    1.1667    1.1111         0
+    1.1167    1.1000    1.0993
+
+
+ans =
+
+    1.1111
+
+g =@(x) (x/pi)^2;
+romberg(g,0,(pi/2),2,[2,2],1)
+    0.1963         0         0
+    0.1473    0.1309         0
+    0.1350    0.1309    0.1309
+
+
+ans =
+
+    0.1309
+
+diary off

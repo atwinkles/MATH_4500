@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+%\usepackage{bbold}
+%\usepackage{url}
+%\usepackage{booktabs}
+%\usepackage{marvosym}
+%\usepackage{wasysym}
+\pagenumbering{arabic}
+\usepackage{fancyhdr}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{eucal}
+\usepackage{parskip} % removes auto indentation for paragraphs
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\newcommand{\Mod}[1]{\ (\text{mod}\ #1)}
+\newcommand{\Problem}[1]{\textbf{Problem #1}}
+
+\linespread{1.5}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 4500}
+\lhead{Alexander Winkles}
+\chead{\Large \textbf{Problem Set 5}}
+\cfoot{Page \thepage}
+
+\begin{document}
+
+
+\Problem{6.2.3}
+
+Let $f \in C^n[a,b]$. Suppose $x_0 \in (a,b)$ and $x_i \to x_0$ for $1 \leq k \leq n$. By Theorem 4 of the section, we know $f[x_0,x_1,...,x_n] = \frac{1}{n!}f^{(n)}(\xi)$, where $\xi \in (a,b)$. As each $x_i$ converges to $x_0$, it must be that $\xi \to x_0$ as well. Thus we find that $f[x_0,x_1,...,x_n]$ will converge to $\frac{1}{n!}f^{(n)}(x_0)$, as desired.
+
+\Problem{6.2.4}
+
+Suppose $f$ is a polynomial of degree $k$. Consider for any $n > k\ f[x_0,x_1,...,x_n]$. By definition, $f[x_0,x_1,...,x_n] = c_n$, where $c_n$ is the coefficient for $x^n$. As $f$ is only a polynomial of degree $k$, any term of degree greater than $k$ must be zero, or else $f$ would be of that degree. Thus, $f[x_0,x_1,...,x_n] = 0$. 
+
+\Problem{6.2.6}
+
+\begin{align*}
+(\alpha f + \beta g)[x_0,x_1,...,x_n] &= WHO KNOWS	
+\end{align*}
+
+\Problem{6.2.7}
+
+We know that $f[x_i,x_{i+1}] = \displaystyle\frac{f[x_i] - f[x_{i+1}]}{x_i - x_{i+1}}$. Recall that $f[x_i,x_{i+1}] = f'(x_i)$. Thus we find that
+\begin{align*}
+(fg)' &= (fg)[x_i,x_{i+1}]\\ 
+&= \displaystyle\frac{(fg)[x_i] - (fg)[x_{i+1}]}{x_i - x_{i+1}}	\\
+&= \displaystyle\frac{f(x_i)g(x_i) - f(x_{i+1})g(x_{i+1})}{x_i-x_{i+1}}\\
+&= \displaystyle\frac{f(x_i)g(x_i) -f(x_{i+1})g(x_i)+f(x_{i+1})g(x_i)- f(x_{i+1})g(x_{i+1})}{x_i-x_{i+1}}\\
+&= \displaystyle\frac{(f(x_i)-f(x_{i+1}))g(x_i)}{x_i-x_{i+1}} + \displaystyle\frac{f(x_{i+1})(g(x_i)-g(x_{i+1}))}{x_i-x_{i+1}}\\
+&= f[x_i,x_{i+1}]g[x_i] + f[x_{i+1}]g[x_i,x_{i+1}]\\
+&= f'g + fg'
+\end{align*}
+
+\Problem{6.2.19}
+
+Let $u(x)$ interpolate $f$ at $x_0,x_1,...,x_{n-1}$ and let $v(x)$ interpolate $f$ at $x_1,x_2,...,x_n$. Suppose $g(x) = \displaystyle\frac{[(x_n - x_0)u(x) + (x - x_0)v(x)]}{x_n-x_0}$. We wish to show that $g(x)$ interpolates $f$ for $x_0,x_1,...,x_n$. Let $x = x_0$. Then we have $g(x_0) = \displaystyle\frac{(x_n - x_0)u(x_0) + 0}{x_n - x_0} = u(x_0)$. Since $u(x)$ interpolates $f$ at $x_0$, $g(x)$ does too. Now let $x = x_1$. Then $g(x_1) = \displaystyle\frac{(x_n - x_1)u(x_1) + (x_1-x_0)v(x_1)}{x_n - x_0} = \displaystyle\frac{x_nu(x_1)-x_1u(x_1) + x_1v(x_1) - x_0v(x_1)}{x_n - x_0}$. Since both $u(x)$ and $v(x)$ interpolate $f$ at $x_1$, $u(x_1) = v(x_1)$. So then $g(x_1) = \displaystyle\frac{x_nu(x_1) - x_0u(x_1)}{x_n - x_0} = u(x_1)$, so again $g(x)$ interpolates $f$. This will be true for any $x_i$ where $1 \leq i \leq n-1$. Now let $x = x_n$. Thus $g(x_n) = \displaystyle\frac{0 + (x_n-x_0)v(x_n)}{x_n-x_0} = v(x_n)$. Since $v(x)$ interpolates $f$ at $x_n$, $g(x)$ does too and in turn $g(x)$ interpolates $f$ for $x_0,x_1,...,x_n$ as desired.
+
+\Problem{6.2.20}***
+
+Notice that by construction, any $a_i$ is linear, so in turn any $b_i$ is quadratic, as it multiplies $a_i$ terms by $x$. Then $c_i$ multiplies $b_i$ by $x$, so it must be cubic. 
+
+\Problem{6.2.21}
+
+This may be generalized as $p_{i,i}(x) = y_i$ and $p_{i,j}(x) = \displaystyle\frac{(x_{j}-x)p_{i,j-1}	(x) + (x - x_i)p_{i+1,j	}(x)}{x_j - x_i}$.
+
+\Problem{6.2.22}
+
+The divided difference table is as follows:
+\begin{center}
+\begin{tabular}{cc|ccc}
+	0 & 51 & -48 & 23 & $-\frac{16}{7}$\\
+	1 & 3 & -2 & 7 & \\
+	2 & 1 & 40 & & \\
+	7 & 201 & & &
+\end{tabular}
+\end{center}
+
+Thus, the Newton interpolating polynomial will be: $51 - 48x +23x(x-1) - \frac{16}{7}x(x-1)(x-2)$. 
+
+\Problem{6.2.23}
+
+With the original polynomial, we find $p(3) = -38$. Since we want a polynomial $q(x)$ such that $q(3) = 10$, we let $q(x) = p(x) + x(x+1)(x-1)(x-2)$ to get the desired result.
+
+\Problem{6.2.24}
+
+The divided difference table is as follows:
+\begin{center}
+\begin{tabular}{cc|ccc}
+	4 & 63 & 26 & 6 & 1 \\
+	2 & 11 & 2 & 5 & \\
+	0 & 7 & 7 & & \\
+	3 & 28 & & & \\	
+\end{tabular}
+\end{center}
+
+Thus, the Newton interpolating polynomial will be: $63 + 26(x-4) + 6(x-4)(x-2) + (x-4)(x-2)x$.
+
+\Problem{6.3.1}
+
+The divided difference table is as follows:
+\begin{center}
+\begin{tabular}{cc|cccc}
+	0 & 2 & & & & \\
+\end{tabular}	
+\end{center}
+
+
+\end{document}

@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{gensymb}
+\usepackage{graphicx}
+%\usepackage{bbold}
+%\usepackage{url}
+%\usepackage{booktabs}
+%\usepackage{marvosym}
+%\usepackage{wasysym}
+\pagenumbering{arabic}
+\usepackage{fancyhdr}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{eucal}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\newcommand{\Mod}[1]{\ (\text{mod}\ #1)}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 4500}
+\lhead{Alexander Winkles}
+\chead{\Large \textbf{Problem Set 3}}
+\cfoot{Page \thepage}
+
+\begin{document}
+
+\textit{3.3.2}\\
+
+Suppose $x_n \to q$ as $n \to \infty$. 
+By rearranging the secant method, we have $f(x_n) = (x_n-x_{n+1})\left[\frac{f(x_n)-f(x_{n-1})}{x_n-x_{n-1}}\right]$
+Taking the limit of this expression gives $\lim_{n \to \infty} f(x_n) = \lim_{n \to \infty} (x_n-x_{n+1})\left[\frac{f(x_n)-f(x_{n-1})}{x_n-x_{n-1}}\right]$.
+By the Mean Value Theorem, we know $\lim_{n \to \infty} \left[\frac{f(x_n)-f(x_{n-1})}{x_n-x_{n-1}}\right] = f'(q)$. 
+From the problem, we know $f'(q) \neq 0$, so we arrive at $\lim_{n \to \infty} f(x_n) = f(q) = \lim_{n \to \infty} (x_n) - x_{n-1})*f'(q) = (q - q)*f'(q) = 0$.
+Thus, q is a zero.
+
+\newline
+\textit{3.3.3}\\
+
+Let us begin by finding the Taylor expansions of $f(x + h)$ and $f(x + k)$. 
+We find $f(x+h) \approx f(x) + f'(x)*h + /frac{1}{2}f''(x)h^2$.
+Likewise, $f(x+k) \approx f(x) + f'(x)*k + /frac{1}{2}f''(x)k^2$.
+Rearranging the second expansion gives $\frac{f(x+k) -f(x)-f'(x)k}{k^2} \approx f''(x)$.
+We plug this in to the first expansion to find $f(x+h) \approx f(x) + f'(x)*h + \left[\frac{f(x+k) - f(x) - f'(x)*k}{k^2}\right]*h^2$.
+Rearranging this gives $f(x + h)*k^2 - f(x)*k^2 - f'(x)*hk^2 - f(x+k)h^2 + f(x)h^2 + f'(x)*h^2k = 0$.
+
+\end{document}

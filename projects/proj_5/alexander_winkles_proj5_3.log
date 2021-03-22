@@ -1,0 +1,71 @@
+Here is my code:
+--------------------------------------------------------------------------
+type romberg2.m
+
+function y = romberg2(f,a,b,n,q1,q2)
+%y = romberg(f,a,b,n,r,q)
+%
+%This is an algorithm written by Alexander Winkles that performs Romberg
+%integration from composite Simpson's rule.
+%
+%f  : the function being integrated
+%a  : the lower bound of the integral
+%b  : the upper bound of the integral
+%n  : the 2^n subinterval specification
+%q1 : if q == 1, returns an array of all Romberg values computed
+%q2 : a two element vector. if q2(1) == 1, then prints the error matrix
+%       where q2(2) is the true value
+
+R = zeros(n+1,n+1);
+
+for i=1:n+1
+    R(i,1) = csimpson(f,a,b,n*i);
+end;
+
+for i=2:n+1
+    for j=2:i
+        R(i,j) = R(i,j-1) + (R(i,j-1) - R(i-1,j-1))/(4^(j-1) - 1);
+    end;
+end;
+
+y = R(n+1,n+1);
+
+if q1 == 1
+    disp(R)
+end;
+
+if q2(1) == 1
+    E = zeros(n+1,n+1);
+    for i=1:n+1
+        for j=1:n+1
+            if i >= j
+                E(i,j) = q2(2) - R(i,j);
+            end;
+        end;
+    end;
+    disp(E)
+end;
+--------------------------------------------------------------------------
+Here are my results:
+
+romberg2(f,0,1,5,1,[1 (sin(5)^2/5)])
+   0.185064715255191                   0                   0                   0                   0                   0
+   0.183972961249513   0.183609043247620                   0                   0                   0                   0
+   0.183919935383224   0.183902260094461   0.183921807884250                   0                   0                   0
+   0.183911173839661   0.183908253325140   0.183908652873852   0.183908444064163                   0                   0
+   0.183908795455152   0.183908002660316   0.183907985949327   0.183907975363224   0.183907973525181                   0
+   0.183907943875968   0.183907660016240   0.183907637173302   0.183907631637174   0.183907630289229   0.183907629953710
+
+  -0.001157562347546                   0                   0                   0                   0                   0
+  -0.000065808341867   0.000298109660025                   0                   0                   0                   0
+  -0.000012782475579   0.000004892813184  -0.000014654976605                   0                   0                   0
+  -0.000004020932016  -0.000001100417495  -0.000001499966206  -0.000001291156518                   0                   0
+  -0.000001642547507  -0.000000849752670  -0.000000833041682  -0.000000822455579  -0.000000820617536                   0
+  -0.000000790968323  -0.000000507108595  -0.000000484265656  -0.000000478729529  -0.000000477381584  -0.000000477046065
+
+
+ans =
+
+   0.183907629953710
+
+diary off

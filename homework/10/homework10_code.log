@@ -1,0 +1,56 @@
+type lufactor.m
+
+function [L,U] = lufactor(A,q)
+%[L,U] = lufactor(A)
+%
+%This is an LU factorization algorithm written by Alexander Winkles that
+%performs Crout factorization.
+%
+%A : The matrix to be factorized
+%q : Determines what specific LU factorization will be returned:
+%       q == 1 : Crout factorization
+%       q == 2 : UL factorization with L unit lower triangularl
+
+if size(A,1) ~= size(A,2)
+    fprintf('This matrix is not square!')
+else
+    n = size(A,1);
+    
+    L = zeros(n,n);
+    U = zeros(n,n);
+    if q == 1
+        for i=1:n
+            for j=1:n
+            
+                sum = 0;
+                m = i - 1;
+                for k=1:m
+                    sum = sum + (L(i,k)*U(k,j));
+                end;
+            
+                if i == j
+                    U(i,j) = 1;
+                end;
+            
+                if i >= j
+                    L(i,j) = A(i,j) - sum;
+                else
+                    U(i,j) = (A(i,j)-sum)/L(i,i);
+                end;
+            end;
+        end;
+    end;
+    if q == 2 %IN PROGRESS
+        for i=n:-1:1
+            for j=n:-1:1
+                
+                
+                
+                if i == j
+                    L(i,j) = 1;
+                end;
+            end;
+        end;
+    end;
+end;    
+diary off

@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+%\usepackage{bbold}
+%\usepackage{url}
+%\usepackage{booktabs}
+%\usepackage{marvosym}
+%\usepackage{wasysym}
+\pagenumbering{arabic}
+\usepackage{fancyhdr}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{eucal}
+\usepackage{parskip} % removes auto indentation for paragraphs
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\newcommand{\Mod}[1]{\ (\text{mod}\ #1)}
+\newcommand{\Problem}[1]{\textbf{Problem #1}}
+
+\linespread{1.5}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 4500}
+\lhead{Alexander Winkles}
+\chead{\Large \textbf{Problem Set 6}}
+\cfoot{Page \thepage}
+
+\begin{document}
+
+
+\Problem{6.4.3}
+
+Let $S_i(x) = \frac{z_i}{6h_i}(t_{i+1}-x)^3 + \frac{z_{i+1}}{6h_i}(x-t_i)^3 + C(x-t_i) + D(t_{i+1}-x)$ where $h_i \equiv t_{i+1} - t_i$. Now let $t_{i+1} \equiv t_i + h_i$. We find that 
+\begin{align*}
+S_i(x) &= \frac{z_i}{6h_i}(t_i+h_i-x)^3 + \frac{z_{i+1}}{6h_i}(x-t_i)^3 + C(x-t_i) + D(t_i+h_i-x)\\
+&= -\frac{z_i}{6h_i}(x-t_i-h_i)^3 + \frac{z_{i+1}}{6h_i}(x-t_i)^3 + C(x-t_i) - D(x-t_i-h_i)\\
+\end{align*}
+as required.
+
+\Problem{6.4.7}
+
+Let 
+\begin{center}
+$f(x) = 
+\begin{cases} 
+a(x-2)^2 + b(x-3)^3  & x \in (-\infty,1] \\
+c(x-2)^2 & x \in [1,3] \\
+d(x-2)^2 + e(x-3)^3 & x \in [3,\infty)
+\end{cases}$
+\end{center}
+
+Define $f_1(x)$ to be the function defined on $(-\infty,1]$, define $f_2(x)$ to be the function over $[1,3]$ and define $f_3(x)$ to be the function defined on $[3,\infty)$. Then we find the following derivatives:
+\begin{table}[h!]
+\centering
+\begin{tabular}{lclcl}
+$f_1(x) = a(x-2)^2 + b(x-3)^3$ && $f_2(x) = c(x-2)^2$ && $f_3(x) = d(x-2)^2 + e(x-3)^3$ \\
+$f_1'(x) = 2a(x-2) + 3b(x-1)^2$ && $f_2'(x) = 2c(x-2)$ && $f_3'(x) = 2d(x-2)+3e(x-3)^2$\\
+$f_1''(x) = 2a +6b(x-1)$ && $f_2''(x) = 2c$ && $f_3''(x) = 2d + 6e(x-3)$
+\end{tabular}
+\end{table}
+
+For cubic splines, we know they are $C^2$ so their derivatives must be continuous at the given knots. From this, we find that $a = c = d$. Any nonzero values for $b,e$ will make this system a cubic spline. If they were zero, then this would simply be a polynomial, and not piecewise. Now, using the parameters given from the problem, placing $x = 1$ into the system finds $a = c = d = 7$. Setting $x = 0$, we find $7(-2)^2 + b(-1)^3 = 26 \Rightarrow b = 2$. Setting $x = 4$, we find $7(2)^2 + e(1)^3 = 25 \Rightarrow e = -3$. 
+
+\Problem{6.4.11}
+
+Let 
+\begin{center}
+$f(x) = 
+\begin{cases}
+3 + x - 9x^2 & x \in [0,1] \\
+a + b(x-1) + c(x-1)^2 + d(x-1)^3 & x \in [1,2]
+\end{cases}$
+\end{center}
+\newpage
+Using a similar scheme for definining functions from Problem 7, we find the following derivatives:
+\begin{table}[h!]
+\centering
+\begin{tabular}{lll}
+$f_1(x) = 3 + x -9x^2$ && $f_2(x) = a + b(x-1) + c(x-1)^2 + d(x-1)^3$\\
+$f_1'(x) = 1 - 18x$ && $f_2'(x) = b + 2c(x-1) + 3d(x-1)^2$\\
+$f_1''(x) = -18$ && $f_2''(x)=2c + 6d(x-1)$
+\end{tabular}
+\end{table}
+
+From this, letting $x = 1$ we find that $a = -5, b = -17, c = -9$.  
+Now letting $f''(2) = 2(-9) + 6d(2-1) = 0 \Rightarrow d = 3$. 
+
+\Problem{6.4.12}
+
+Let 
+\begin{center}
+$f(x) =
+\begin{cases}
+x^3 + x & x \leq 0\\
+x^3 - x & x \geq 0\\
+\end{cases}$
+\end{center}
+
+From this we find the following derivatives:
+\begin{table}[h!]
+\centering
+\begin{tabular}{lll}
+$f_1(x) = x^3 + x$ && $f_2(x) = x^3 - x$\\
+$f_1'(x) = 3x^2 + 1$ && $f_2'(x) = 3x^2 - 1$\\
+$f_1''(x) = 6x$ && $f_2''(x) = 6x$
+\end{tabular}
+\end{table}
+
+This is not a cubic spline, as $f_1'(0) \neq f_2'(0)$, so its first derivative is not continuous. Thus, $\displaystyle\lim_{x \uparrow 0} 6x = 0$ and $\displaystyle\lim_{x \downarrow 0} 6x = 0$, so $\displaystyle\lim_{x \uparrow 0} f''(x) = \displaystyle\lim_{x \downarrow 0} f''(x)$. 
+
+\Problem{6.4.13}
+
+Let 
+\begin{center}
+$f(x) = 
+\begin{cases}
+1 + x - x^3 & x \in [0,1]\\
+1 -2(x-1) -3(x-1)^2 + 4(x-1)^3 & x \in [1,2]\\
+4(x-2) + 9(x-2)^2 - 3(x-2)^3 & x \in [2,3]\\
+\end{cases}$
+\end{center}
+
+From this we find the following derivatives:
+\begin{table}[h!]
+\centering
+\begin{tabular}{lllll}
+$f_1(x) = 1 + x -x^3$ && $f_2(x) = 1 - 2(x-1)-3(x-1)^2 + 4(x-1)^3$ && $f_3(x) = 4(x-2) + 9(x-2)^2 -3(x-2)^3$\\
+$f_1'(x) = 1 - 3x^2$ && $f_2'(x) = -2 -6(x-1) + 12(x-1)^2$ && $f_3'(x) = 4 + 18(x-2) - 9(x-2)^2$\\
+$f_1''(x) = -6x$ && $f_2''(x) = -6 +24(x-1)$ && $f_3''(x) = 18 - 18(x-2)$
+\end{tabular}
+\end{table}
+
+Upon examining these derivatives, we find that this spline does interpolate the given data. All the knots give the approrpiate answers, and the derivatives are continuous at the knots. Additionally, $f''(0) = f''(3) = 0$, confirming it is natural. 
+
+\end{document}
